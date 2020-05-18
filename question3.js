@@ -76,7 +76,7 @@ function solution(relation) {
   let result = 0;
   let category = [];
   let fullArray = relation.slice();
-  for(let i=0;i<relation.length;i++) {
+  for(let i=0;i<relation[0].length;i++) {
     category.push(i);
   }
   
@@ -91,6 +91,8 @@ function solution(relation) {
       result += 1;
       category = removeAll(combi,category);
     }
+    
+    console.log(combi, category);
   }
   
   return result;
