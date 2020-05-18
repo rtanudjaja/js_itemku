@@ -1,3 +1,11 @@
+/**
+  * @param {N} int
+  * @param {users} [int]
+  * @return int
+  * return an array containing the number of the stage in descending order of 
+  * the highest failure rate, when total stages N, an array users containing 
+  * the stage in which the game user is currently playing are given as a parameter
+  */
 function solution(N, users) {
   let answer = [];
   let total_user = users.length;

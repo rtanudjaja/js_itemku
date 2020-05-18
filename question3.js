@@ -1,10 +1,19 @@
-//check if the value is unique
+/**
+  * @param {str} [string]
+  * @return bool (true/false)
+  * check if the string in str[] is all unique
+  */
 function isUnique(str) {
   return new Set(str).size == str.length; 
 }
 
-//remove all value that is already part of existing combination
-function removeAll(combination,category) {
+/**
+  * @param {combination} [int]
+  * @param {category} [[int]]
+  * remove all value in category that is already part of existing combination
+  * using filter
+  */
+function removeAll(combination, category) {
   let result = category.slice();
   for(let i=0; i < combination.length; i++) {
     result = result.filter(n => n.indexOf(combination[i]) == -1);
@@ -12,7 +21,12 @@ function removeAll(combination,category) {
   return result;
 }
 
-//pair up the value of the relation based on the combination
+/**
+  * @param {combination} [int]
+  * @param {relation} [[string]]
+  * @return [[string]]
+  * pair up the value of the relation based on the combination
+  */
 function pairUp(combination, relation) {
   let result = []
   relation.forEach(function(array) {
@@ -25,8 +39,13 @@ function pairUp(combination, relation) {
   return result
 }
 
-//get all possible combination taken and modified from stack overflow
-//https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
+/**
+  * @param {combination} [int]
+  * @return [[int]]
+  * get all possible combination
+  * copied and modified from stack overflow code, link below:
+  * https://stackoverflow.com/questions/43241174/javascript-generating-all-combinations-of-elements-in-a-single-array-in-pairs
+  */
 function getCombinations(combinations) {
   let combi = [];
   let temp = [];
@@ -39,7 +58,6 @@ function getCombinations(combinations) {
           temp.push(combinations[j]);
       }
     }
-    
     if (temp.length > 0) {
       combi.push(temp);
     }
@@ -49,12 +67,16 @@ function getCombinations(combinations) {
   return combi;
 }
 
-//read the relation based on size N
-function readRelation(N, relation) {
+/**
+  * @param {relation} [[string]]
+  * @return int
+  * read the relation and find the total number of candidate key
+  */
+function solution(relation) {
   let result = 0;
   let category = [];
   let fullArray = relation.slice();
-  for(let i=0;i<N;i++) {
+  for(let i=0;i<relation.length;i++) {
     category.push(i);
   }
   
@@ -73,30 +95,3 @@ function readRelation(N, relation) {
   
   return result;
 }
-
-//get the final solution
-function solution(relation) {
-  let answer = 0;
-  answer = readRelation(relation[0].length,relation);
-  return answer;
-}
-
-/*
-console.log(removeAll([0,1],[[ 0, 1, 3 ],[ 0, 1, 2 ],[ 0, 2, 3 ],[ 1, 2, 3 ]]));
-console.log(isUnique(pairUp([0], [["100","ryan","music","2"],["200","apeach","math","2"]] )));
-console.log(isUnique(pairUp([2,3], [["100","ryan","music","2"],["200","apeach","math","2"]] )));
-console.log(isUnique(pairUp([0], [["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]] )));
-console.log(isUnique(pairUp([1,2], [["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]] )));
-*/
-
-
-//console.log(readRelation(4,[["100","ryan","music","2"]]));
-//console.log(readRelation(4, [["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]] ));
-console.log(solution([["100","ryan","music","2"]]));
-console.log(solution([["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]));
-console.log(solution([["100","ryan","music1","21"],
- ["200","apeach","math","22"],
- ["300","tube","computer","32"],
- ["400","con","computer","4"],
- ["500","muzi","music","31"],
- ["600","apeach","music3","2"]]));
